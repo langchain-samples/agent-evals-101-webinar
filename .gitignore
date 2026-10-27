@@ -1,0 +1,17 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Internal planning (not for attendees)
+planning/
+CLAUDE.md
+.claude/

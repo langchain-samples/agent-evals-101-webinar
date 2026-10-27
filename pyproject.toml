@@ -1,0 +1,10 @@
+[project]
+name = "agent-evals-101"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain>=1.4.7",
+    "langchain-openai>=1.0.0",
+    "langsmith>=0.14.12",
+    "python-dotenv>=1.0.1",
+]
