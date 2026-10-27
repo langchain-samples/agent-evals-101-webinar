@@ -2,12 +2,12 @@
 
 The repo for LangChain's **Agent Evals 101** webinar. It has two small agents that live in the same kitchen app:
 
-- **Dinner Bot** suggests a dinner from what's in your kitchen. It's the agent from the live demo.
+- **Dinner Bot** suggests a recipe from what's in your kitchen. It's the agent from the live demo.
 - **Recipe Remixer** changes a recipe to fit a diet, like "make this vegetarian." It's the take home.
 
-Each agent has a bug on purpose. You find it in the traces, write evals that catch it, fix it, and rerun.
+Each agent has an intentional bug. You find it in the traces, write evals that catch it, fix it, and rerun.
 
-Everything here works on the LangSmith Developer (free) plan.
+Everything here works on the LangSmith Developer (free) plan!
 
 ## Repo layout
 
@@ -116,11 +116,9 @@ Code can't tell you the quality of a recipe, so this part uses LLM judges. Every
 - `food_safe_judge` asks: "Can someone follow these steps without risking food poisoning?"
 - `realistic_judge` asks: "Is this a real dinner a home cook would make?"
 
-The recipes in `judge_examples.py` are written by hand so every run sees the same ones. Each has human labels for `food_safe` and `realistic`. A recipe counts as `good` if it passes both. When a recipe fails, the label comes with a short reviewer note, like "Tastes the raw turkey mixture."
+The recipes in `judge_examples.py` are written by hand so every run sees the same ones. Each has human labels for `food_safe_human` and `realistic_human`. A recipe counts as `good` if it passes both. When a recipe fails, the label comes with a short reviewer note, like "Recipe says to taste the raw turkey mixture."
 
-The judges run on `gpt-4o-mini`. Reasoning models like `gpt-5-nano` often check food safety on their own, even when you only ask "Is this a good recipe?" The narrow judges give the same answers on either model. Set `JUDGE_MODEL` in `.env` to try it.
-
-For the demo, the script adds these human labels for you. In practice, your team would label runs in an [annotation queue](https://docs.langchain.com/langsmith/annotation-queues), and you can use Align Evals in LangSmith to tune a judge until it agrees with those labels.
+For the demo, the script adds these human labels for you. In practice, your team would label runs in an [annotation queue](https://docs.langchain.com/langsmith/annotation-queues), and you can use [Align Evals](https://www.langchain.com/blog/introducing-align-evals) in LangSmith to tune a judge until it agrees with those labels.
 
 Build the dataset and run both experiments:
 
