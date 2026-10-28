@@ -24,9 +24,6 @@ load_dotenv()
 MODEL_NAME = os.getenv("DINNER_BOT_MODEL", "openai:gpt-5-nano")
 REASONING_EFFORT = os.getenv("DINNER_BOT_REASONING_EFFORT", "low")
 
-# Should match the staples the app promises users: salt, pepper, oil, water.
-# Bug: the list drifted and now includes items users never added. The fix is
-# trimming it back to those four.
 STAPLES = ["salt", "pepper", "oil", "butter", "garlic", "onion", "soy sauce", "milk"]
 
 SYSTEM_PROMPT = """You are a dinner assistant in an app that keeps track of the user's kitchen.
@@ -69,8 +66,6 @@ agent = create_agent(
     [get_pantry],
     system_prompt=SYSTEM_PROMPT,
     context_schema=Context,
-    # strict makes OpenAI enforce the schema. Without it, gpt-5-nano sometimes
-    # returns steps as objects instead of strings and the run crashes.
     response_format=ProviderStrategy(Recipe, strict=True),
     name="dinner_bot",
 )
